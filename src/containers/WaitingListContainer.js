@@ -11,17 +11,11 @@ class WaitingListContainer extends Component {
     this.setState({
       [e.target.name] : e.target.value
     });
-
     //{title : "sdfsdf", desc : "sdfsdf"}
-  
-    console.log(e.target.value);
+    
     //const { WaitingActions } = this.props;
     //WaitingActions.changeInput(e.target.value);
   };
-  // onChangeDesc = e => {
-  //   const { WaitingActions } = this.props;
-  //   WaitingActions.changeInput(e.target.value);
-  // };
   // 등록 이벤트
   handleSubmit = e => {
     e.preventDefault();

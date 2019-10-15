@@ -46,16 +46,16 @@
   border-top: none;
 }
 
-.WaitingList ul li .text {
+/* .WaitingList ul li .text {
   flex: 1;
-}
+} */
 .WaitingList ul li .title {
   flex: 1;
 }
 .WaitingList ul li .desc {
   flex: 1;
 }
-.WaitingList ul li .text.entered {
+.WaitingList ul li .entered {
   text-decoration: line-through;
   color: gray;
 }
