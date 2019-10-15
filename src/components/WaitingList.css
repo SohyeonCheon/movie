@@ -1,7 +1,7 @@
 .WaitingList {
   margin-top: 1rem;
   border: 1px solid black;
-  width: 19rem;
+  width: 34rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,11 @@
   flex: 1;
   font-size: 1.25rem;
 }
-
+.WaitingList form textarea {
+  flex: 1;
+  font-size: 1.25rem;
+  resize:none;
+}
 .WaitingList form button {
   font-size: 1.25rem;
   padding: 0.5rem;
@@ -45,7 +49,12 @@
 .WaitingList ul li .text {
   flex: 1;
 }
-
+.WaitingList ul li .title {
+  flex: 1;
+}
+.WaitingList ul li .desc {
+  flex: 1;
+}
 .WaitingList ul li .text.entered {
   text-decoration: line-through;
   color: gray;
