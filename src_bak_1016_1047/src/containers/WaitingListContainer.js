@@ -12,7 +12,7 @@ class WaitingListContainer extends Component {
       [e.target.name] : e.target.value
     });
     //{title : "sdfsdf", desc : "sdfsdf"}
-    
+
     //const { WaitingActions } = this.props;
     //WaitingActions.changeInput(e.target.value);
   };
@@ -21,7 +21,18 @@ class WaitingListContainer extends Component {
     e.preventDefault();
     const { WaitingActions } = this.props;
     WaitingActions.create(this.state); // 등록 this.state에 내가 저장한 setState값이 들어오는 거야. create함수에 파라미터로 this.state값을 주는거야.
-    WaitingActions.changeInput(""); // 인풋 값 초기화
+    //WaitingActions.changeInput(""); // 인풋 값 초기화
+  };
+  handleUpdate = data => {
+    const { list } = this.props.state;
+    this.setState({
+      list: list.map(
+        item => item.id === data.id
+            ? { ...item, ...data }
+            : item
+      )
+    });
+
   };
   // 입장
   handleEnter = id => {
@@ -41,6 +52,7 @@ class WaitingListContainer extends Component {
         textarea={textarea}
         waitingList={list}
         onChange={this.handleChange}
+        onUpdate={this.handleUpdate}
         onSubmit={this.handleSubmit}
         onEnter={this.handleEnter}
         onLeave={this.handleLeave}

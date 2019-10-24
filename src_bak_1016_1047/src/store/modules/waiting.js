@@ -1,11 +1,11 @@
 import { createAction, handleActions } from "redux-actions";
 
-const CHANGE_INPUT = "waiting/CHANGE_INPUT"; // 인풋 값 변경
+//const CHANGE_INPUT = "waiting/CHANGE_INPUT"; // 인풋 값 변경
 //const CHANGE_TEXTAREA = "waiting/CHANGE_TEXTAREA"; // 인풋 값 변경
 const CREATE = "waiting/CREATE"; // 명단에 이름 추가
+const UPDATE = "waiting/UPDATE"; // 수정
 const ENTER = "waiting/ENTER"; // 입장
 const LEAVE = "waiting/LEAVE"; // 나감
-const UPDATE = "waiting/UPDATE"; // 나감
 
 // **** FSA 규칙(읽기 쉽고, 유용하고, 간단한 액션 객체를 만들기 위해서 만들어졌)을 따르는 액션 생성 함수 정의
 // export const changeInput = text => ({ type: CHANGE_INPUT, payload: text });
@@ -15,11 +15,11 @@ const UPDATE = "waiting/UPDATE"; // 나감
 
 let id = 3;
 // createAction 으로 액션 생성함수 정의 - 가독성 better
-export const changeInput = createAction(CHANGE_INPUT, text => text);
+//export const changeInput = createAction(CHANGE_INPUT, text => text);
 export const create = createAction(CREATE, text => ({ ...text, id: id++ }));
+export const update = createAction(UPDATE, text => ({ ...text, id: id++ }));
 export const enter = createAction(ENTER, id => id);
 export const leave = createAction(LEAVE, id => id);
-export const update = createAction(UPDATE, text => ({ ...text, id: id++ }));
 
 //위에서 액션생성함수로 create함수생성. 받아오는 text란 파라미터에는 내가 setState에서 저장한 title과 desc가 들어오는거야 so, ...text로 풀어주는거지.
 
@@ -75,6 +75,13 @@ export default handleActions(
         entered: false
       })
     }),
+    [UPDATE]: (state, action) => ({
+      ...state,
+      list: state.list.map(
+        item => item.id === action.payload.id? { ...action.paylaod } : item
+        //entered: false
+      )
+    }),
     [ENTER]: (state, action) => ({
       ...state,
       list: state.list.map(item =>
@@ -84,15 +91,6 @@ export default handleActions(
     [LEAVE]: (state, action) => ({
       ...state,
       list: state.list.filter(item => item.id !== action.payload)
-    }),
-    [UPDATE]: (state, action) => ({
-      ...state,
-      list: state.list.concat({
-        id: action.payload.id,
-        name: action.payload.title,
-        desc: action.payload.desc,
-        entered: false
-      })
     })
   },
   initialState

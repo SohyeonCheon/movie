@@ -28,6 +28,7 @@ const WaitingList = ({
   inputDesc, // **** 추가됨
   waitingList,
   onChange, // **** 추가됨
+  onUpdate, // **** 추가됨
   onSubmit, // **** 추가됨
   onEnter,
   onLeave
@@ -61,6 +62,7 @@ const WaitingList = ({
         <input name="title" placeholder="title" value={inputTitle} onChange={onChange} />
         <textarea name="desc" placeholder="description" value={inputDesc} onChange={onChange} />
         <button>등록</button>
+        <button onSubmit={onUpdate}>수정</button>
       </form>
       <ul>{waitingItems}</ul> {/* 하드코딩된것을 컴포넌트 배열로 교체 */}
       <ul>{readItems}</ul>
